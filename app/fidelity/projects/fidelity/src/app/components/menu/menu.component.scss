@@ -1,0 +1,83 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar {
+  font-weight: bold;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.mat-toolbar.mat-transparent {
+  background-color: unset;
+}
+
+mat-nav-list {
+  padding: 0;
+
+  mat-icon {
+    margin: 0 10px 0 0;
+  }
+
+  .user-container, .logout-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+
+    .user-avatar {
+      width: 2.5rem;
+    }
+
+    .user-name {
+      margin: 0 10px;
+    }
+  }
+
+  a {
+    color: var(--color-gray-1);
+  }
+
+  .active {
+    font-weight: bold;
+    background-color: var(--color-primary-light);
+
+    mat-icon {
+      color: var(--color-primary);
+    }
+  }
+
+  .logout-container button mat-icon {
+    transform: rotateY(180deg);
+  }
+}
+
+.menu-logo {
+  display: flex;
+  justify-content: center;
+  background-color: var(--color-primary-light) !important;
+
+  img {
+    max-width: 7rem;
+  }
+}
+
+.page-title {
+  margin: 0 10px;
+}
+
+.content-container {
+  padding: 20px;
+}

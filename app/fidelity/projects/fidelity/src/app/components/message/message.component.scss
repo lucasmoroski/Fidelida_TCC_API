@@ -1,0 +1,48 @@
+.message-container {
+  position: absolute;
+  z-index: 10;
+  top: 1rem;
+  right: 1rem;
+
+  .message {
+    padding: 10px;
+    width: 20rem;
+    border-radius: 5px;
+    border-width: 1px;
+    border-style: solid;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    opacity: 1;
+    animation-name: messageFade;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: .5s;
+    box-shadow: 2px 2px 5px var(--color-gray-3);
+
+    @keyframes messageFade {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    .message-content {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+
+      .message-title {
+        font-weight: bold;
+      }
+    }
+
+    .message-button {
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

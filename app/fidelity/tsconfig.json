@@ -1,0 +1,30 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "commonjs",
+    "allowJs": true,
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "paths": {
+      "@fidelity/environments/*": ["./projects/fidelity/src/environments/*"],
+      "@fidelity/assets/*": ["./projects/fidelity/src/assets/*"],
+      "@fidelity/components/*": ["./projects/fidelity/src/app/components/*"],
+      "@fidelity/interfaces/*": ["./projects/fidelity/src/app/interfaces/*"],
+      "@fidelity/services/*": ["./projects/fidelity/src/app/services/*"],
+      "@fidelity/guards/*": ["./projects/fidelity/src/app/guards/*"]
+    }
+  }
+}

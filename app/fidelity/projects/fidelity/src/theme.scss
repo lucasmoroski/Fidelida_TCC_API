@@ -1,0 +1,89 @@
+@import '~@angular/material/theming';
+
+@import url('https://fonts.googleapis.com/css?family=Manrope:300,400,500,700&Oleo+Script&amp;display=swap');
+
+$fidelity-typography: mat-typography-config(
+  $font-family: 'Manrope, sans-serif',
+);
+
+@include mat-core($fidelity-typography);
+
+$mat-bluetiful: (
+  50: #e8eaf6,
+  100: #d0e1ff,
+  200: #9fa8da,
+  300: #7986cb,
+  400: #5c6bc0,
+  500: #2167e8,
+  600: #3949ab,
+  700: #2451a4,
+  800: #283593,
+  900: #1a237e,
+  A100: #8c9eff,
+  A200: #536dfe,
+  A400: #3d5afe,
+  A700: #304ffe,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $light-primary-text,
+    400: $light-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  )
+);
+
+$mat-saffron: (
+  50: #fce4ec,
+  100: #f8bbd0,
+  200: #f48fb1,
+  300: #f06292,
+  400: #ec407a,
+  500: #e91e63,
+  600: #d81b60,
+  700: #c2185b,
+  800: #ad1457,
+  900: #880e4f,
+  A100: #ffb370,
+  A200: #ff9639,
+  A400: #ff7c0a,
+  A700: #c51162,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  )
+);
+
+$fidelity-primary: mat-palette($mat-bluetiful);
+$fidelity-accent: mat-palette($mat-saffron, A200, A100, A400);
+$fidelity-warn: mat-palette($mat-red);
+
+$fidelity-theme: mat-light-theme((
+  color: (
+    primary: $fidelity-primary,
+    accent: $fidelity-accent,
+    warn: $fidelity-warn,
+  )
+));
+
+@include angular-material-theme($fidelity-theme);

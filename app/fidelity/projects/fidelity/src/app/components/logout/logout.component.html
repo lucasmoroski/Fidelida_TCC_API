@@ -1,0 +1,20 @@
+<h1 mat-dialog-title>
+  <mat-icon>help_outline</mat-icon>
+  <span>Sair</span>
+</h1>
+
+<mat-dialog-content>
+  Tem certeza que deseja sair do sistema?
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Não</button>
+  <button
+    mat-raised-button
+    color="primary"
+    [mat-dialog-close]="true"
+    (click)="logout()"
+  >
+    Sim
+  </button>
+</mat-dialog-actions>

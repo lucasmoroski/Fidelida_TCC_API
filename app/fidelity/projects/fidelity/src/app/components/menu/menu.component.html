@@ -1,0 +1,64 @@
+<mat-sidenav-container *ngIf="displayMenu; else fullPage" class="sidenav-container">
+
+  <mat-sidenav
+      #drawer
+      fixedInViewport
+      class="sidenav"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+
+    <mat-toolbar class="menu-logo">
+      <img src="../../../assets/logo/logo-name.png" alt="Logo Fidelidade">
+    </mat-toolbar>
+
+    <mat-nav-list>
+      <div class="user-container">
+          <img class="user-avatar" [src]="user.photo" alt="Imagem do usuário">
+          <span class="user-name">{{ user.name }}</span>
+      </div>
+      <div *ngFor="let menu of menus">
+        <a mat-list-item [routerLink]="menu.link" routerLinkActive="active">
+          <mat-icon matSuffix>{{ menu.icon }}</mat-icon>
+          <span>{{ menu.name }}</span>
+        </a>
+      </div>
+      <div class="logout-container">
+        <button type="button" mat-raised-button color="primary" (click)="openLogoutComponent()">
+          <mat-icon>login</mat-icon>
+          <span>Sair</span>
+        </button>
+      </div>
+    </mat-nav-list>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+
+    <mat-toolbar
+      [class.mat-primary]="(isHandset$ | async) === true"
+      [class.mat-transparent]="(isHandset$ | async) === false"
+    >
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+      <div class="page-title">{{ pageTitle }}</div>
+    </mat-toolbar>
+
+    <div class="content-container">
+      <ng-content *ngTemplateOutlet="fullPage"></ng-content>
+    </div>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
+
+<ng-template #fullPage>
+  <ng-content></ng-content>
+</ng-template>

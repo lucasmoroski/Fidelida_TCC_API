@@ -1,0 +1,117 @@
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+
+  <mat-slide-toggle formControlName="active" color="primary">Produto ativo</mat-slide-toggle>
+
+  <div class="product-fields">
+    <div class="product-fields-left">
+
+      <div class="name-input">
+        <mat-form-field appearance="outline">
+          <mat-label>Nome do produto</mat-label>
+          <input matInput placeholder="Exemplo" formControlName="name">
+          <mat-icon matSuffix>fastfood</mat-icon>
+          <mat-error *ngIf="productForm.get('name').hasError('required')">
+            Campo obrigatório
+          </mat-error>
+          <mat-error *ngIf="productForm.get('name').hasError('minlength')">
+            O produto precisa ter no mínimo 3 caracteres
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="value-input">
+        <mat-form-field appearance="outline">
+          <mat-label>Valor</mat-label>
+          <input matInput placeholder="R$" formControlName="value" prefix="R$ " mask="separator.2" thousandSeparator=".">
+          <mat-icon matSuffix>attach_money</mat-icon>
+          <mat-error *ngIf="productForm.get('value').hasError('required')">
+            Campo obrigatório
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="category-input">
+        <mat-form-field appearance="outline">
+          <mat-label>Categoria</mat-label>
+          <mat-select formControlName="category">
+            <mat-option *ngFor="let category of categories" [value]="category.id">
+              {{ category.name }}
+            </mat-option>
+          </mat-select>
+          <mat-icon matSuffix>category</mat-icon>
+          <mat-error *ngIf="productForm.get('category').hasError('required')">
+            Campo obrigatório
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="description-input">
+        <mat-form-field appearance="outline">
+          <mat-label>Descrição</mat-label>
+          <textarea matInput placeholder="Exemplo" formControlName="description"></textarea>
+        </mat-form-field>
+      </div>
+
+    </div>
+    <div class="product-fields-right">
+
+      <div class="photo-input">
+        <div class="photo-input-label">
+          Foto do produto
+        </div>
+        <div class="photo-input-content">
+          <div *ngIf="photoPreview">
+            <img [src]="photoPreview" alt="Foto do produto" width="64px" height="64px">
+          </div>
+        </div>
+        <mat-progress-bar mode="determinate" [value]="uploadProgress"></mat-progress-bar>
+        <div class="photo-input-actions">
+          <input
+            type="file"
+            style="display:none"
+            accept="image/*"
+            formControlName="photo"
+            (change)="onFileSelect($event)"
+            #fileInput
+          >
+          <button
+            type="button"
+            mat-raised-button
+            color="primary"
+            (click)="fileInput.click()"
+          >
+            <span>Selecionar foto &nbsp;</span>
+            <mat-icon>backup</mat-icon>
+          </button>
+          <button
+            type="button"
+            mat-raised-button
+            color="warn"
+            (click)="onFileClear()"
+            [disabled]="!productForm.get('photo').value"
+          >
+            <span>Remover foto</span>
+            <mat-icon>clear</mat-icon>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="product-buttons">
+    <button type="button" mat-raised-button color="warn" routerLink="/product">
+      <mat-icon>clear</mat-icon>
+      <span>Cancelar</span>
+    </button>
+    <button type="reset" mat-raised-button class="clear" (click)="onReset()" [disabled]="!productForm.dirty">
+      <span>Limpar</span>
+      <mat-icon>delete_outline</mat-icon>
+    </button>
+    <button type="submit" mat-raised-button [class.save]="productForm.valid" [disabled]="!productForm.valid">
+      <span>Salvar</span>
+      <mat-icon>done</mat-icon>
+    </button>
+  </div>
+
+</form>

@@ -1,0 +1,79 @@
+<div class="product-actions-container">
+
+  <mat-form-field appearance="outline"  class="product-filter">
+    <mat-label>Filtrar</mat-label>
+    <input matInput (keyup)="filterProducts($event)" placeholder="exemplo">
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+
+  <button
+    type="button"
+    mat-raised-button
+    color="primary"
+    (click)="newProduct()"
+  >
+    <span>Novo produto</span>
+    <mat-icon>add</mat-icon>
+  </button>
+
+</div>
+
+<div class="loading-container" *ngIf="loading">
+  <mat-spinner *ngIf="loading"></mat-spinner>
+</div>
+
+<div class="product-table-container">
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    matSort
+    matSortActive="created"
+    matSortDirection="desc"
+    class="product-table"
+  >
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+      <td mat-cell *matCellDef="let product">{{ product.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Nome</th>
+      <td mat-cell *matCellDef="let product">{{ product.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="value">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Valor</th>
+      <td mat-cell *matCellDef="let product">{{ product.value | currency: 'BRL' }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="category">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Categoria</th>
+      <td mat-cell *matCellDef="let product">{{ product.category.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="active">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Ativo</th>
+      <td mat-cell *matCellDef="let product">{{ product.active ? 'Sim' : 'Não' }}</td>
+    </ng-container>
+
+    <tr
+      mat-header-row
+      *matHeaderRowDef="columns; sticky: true"
+      class="product-table-header"
+    ></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: columns;"
+      class="product-table-row"
+      [class.deleted]="!row.active"
+      (click)="selectProduct(row.id)"
+    ></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell no-data" colspan="4">Nenhum registro encontrado</td>
+    </tr>
+
+  </table>
+</div>
+<mat-paginator [length]="dataSourceLength" [pageSizeOptions]="[10, 50, 100]"></mat-paginator>

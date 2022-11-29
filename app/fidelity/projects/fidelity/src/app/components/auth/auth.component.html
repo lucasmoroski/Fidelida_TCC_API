@@ -1,0 +1,67 @@
+<div class="flex-container">
+  <div class="auth-box">
+
+    <div class="auth-title">
+      <div class="auth-logo">
+        <img src="../../../assets/logo/logo-name.png" alt="Logo Fidelidade">
+      </div>
+    </div>
+
+    <div class="auth-fields">
+      <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
+
+        <div class="user-input">
+          <mat-form-field appearance="outline">
+            <mat-label>Usuário</mat-label>
+            <input matInput placeholder="exemplo" formControlName="username">
+            <mat-icon matSuffix>person_outline</mat-icon>
+            <mat-error *ngIf="authForm.get('username').hasError('required')">
+              Campo obrigatório
+            </mat-error>
+            <mat-error *ngIf="authForm.get('username').hasError('minlength')">
+              O usuário precisa ter no mínimo 4 caracteres
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="password-field">
+          <mat-form-field appearance="outline">
+            <mat-label>Senha</mat-label>
+            <input matInput type="password" placeholder="*****" formControlName="password">
+            <mat-icon matSuffix>lock_open</mat-icon>
+            <mat-error *ngIf="authForm.get('password').hasError('required')">
+              Campo obrigatório
+            </mat-error>
+            <mat-error *ngIf="authForm.get('password').hasError('minlength')">
+              A senha precisa ter no mínimo 4 caracteres
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="auth-options">
+          <mat-checkbox color="primary">Lembrar de mim</mat-checkbox>
+          <a routerLink="/auth">Esqueci minha senha</a>
+        </div>
+
+        <div class="auth-buttons">
+          <button type="submit" mat-raised-button color="primary" [disabled]="!authForm.valid">
+            <span>Entrar</span>
+            <mat-icon>login</mat-icon>
+          </button>
+          <span>Ou entre com</span>
+          <button mat-raised-button>
+            <img src="../../../assets/brands/google-icon.png" alt="">
+            <span>Google</span>
+          </button>
+        </div>
+
+        <div class="auth-register">
+          <mat-divider></mat-divider>
+          <span>Não possui conta? <a routerLink="/company">Cadastre-se</a></span>
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+</div>

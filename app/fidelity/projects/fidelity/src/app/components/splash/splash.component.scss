@@ -1,0 +1,26 @@
+.splash-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  img.splash-logo {
+    width: 10rem;
+    opacity: 1;
+    animation-name: splashFade;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 2s;
+  }
+
+  @keyframes splashFade {
+    0% {
+      opacity: 0;
+      transform: scale(1.2);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}

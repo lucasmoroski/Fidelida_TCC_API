@@ -1,0 +1,20 @@
+<div class="message-container" *ngIf="messageService.messages.length">
+  <div *ngFor="let message of messageService.messages">
+
+    <div
+      class="message"
+      [style.color]="'var(--color-'+ message.context + ')'"
+      [style.background-color]="'var(--color-'+ message.context + '-secondary)'"
+      [style.border-color]="'var(--color-'+ message.context + ')'"
+    >
+      <div class="message-content">
+        <div class="message-title">{{ message.title }}</div>
+        <div class="message-description">{{ message.description }}</div>
+      </div>
+      <div class="message-button" (click)="messageService.close()">
+        <mat-icon matSuffix>highlight_off</mat-icon>
+      </div>
+    </div>
+
+  </div>
+</div>
